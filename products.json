@@ -1,0 +1,112 @@
+{
+    "products": [{
+        "fairy_sparklers": {
+            "id": 0,
+            "type": 0,
+            "name": "Fairy Sparklers",
+            "description": "Multi-colored sparklers that are safe for any age."
+        },
+        "red_sparklers": {
+            "id": 1,
+            "type": 0,
+            "name": "Red Sparklers",
+            "description": "It's red man."
+        },
+        "blue_sparklers": {
+            "id": 2,
+            "type": 0,
+            "name": "Blue Sparklers",
+            "description": "These are blue."
+        },
+        "butt_sparklers": {
+            "id": 3,
+            "type": 1,
+            "name": "Butt Sparklers",
+            "description": "What you think they are."
+        },
+        "spank_sparklers": {
+            "id": 4,
+            "type": 1,
+            "name": "Spank Sparklers",
+            "description": "A sparkler for anyone."
+        },
+        "love_sparklers": {
+            "id": 5,
+            "type": 1,
+            "name": "Love Sparklers",
+            "description": "Not for the weak."
+        },
+        "free_sparklers": {
+            "id": 6,
+            "type": 2,
+            "name": "Free Sparklers",
+            "description": "Everyone gets a sparkler."
+        },
+        "happy_sparklers": {
+            "id": 7,
+            "type": 2,
+            "name": "Happy Sparklers",
+            "description": "You are happy now."
+        },
+        "coffin_sparklers": {
+            "id": 8,
+            "type": 2,
+            "name": "Coffin Sparklers",
+            "description": "You are dead now."
+        },
+        "wwe_sparklers": {
+            "id": 9,
+            "type": 3,
+            "name": "WWE sparklers",
+            "description": "Why not?"
+        },
+        "horsehole_sparklers": {
+            "id": 10,
+            "type": 3,
+            "name": "Horsehole Sparklers",
+            "description": "Nicer than saying asshole."
+        },
+        "mute_sparklers": {
+            "id": 11,
+            "type": 3,
+            "name": "Mute Sparklers",
+            "description": "You'll never hear them."
+        },
+        "blinding_sparklers": {
+            "id": 12,
+            "type": 4,
+            "name": "Blinding Sparklers",
+            "description": "They are there, you just can't see them."
+        },
+        "sickof_sparklers": {
+            "id": 13,
+            "type": 4,
+            "name": "Sick of Sparklers",
+            "description": "Do you really want sparklers?"
+        },
+        "glitter_sparklers": {
+            "id": 14,
+            "type": 4,
+            "name": "Glitter Sparklers",
+            "description": "Yay glitter."
+        },
+        "silver_sparklers": {
+            "id": 15,
+            "type": 5,
+            "name": "Silver Sparklers",
+            "description": "Silver only."
+        },
+        "hairy_sparklers": {
+            "id": 16,
+            "type": 5,
+            "name": "Hairy Sparklers",
+            "description": "What could that be?"
+        },
+        "smelly_sparklers": {
+            "id": 17,
+            "type": 5,
+            "name": "Smelly Sparklers",
+            "description": "Everyone likes a surprise."
+        }
+    }]
+}

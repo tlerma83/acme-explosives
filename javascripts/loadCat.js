@@ -14,10 +14,13 @@ var Fireworks = (function(myfire){
                 let categoryHTML = `<div class="products">
                 <h3>${categoryArray[i].name}</h3>
                 </div>`;
+                $("#output").append(categoryHTML);
             }
-            $("#output").append(categoryHTML);
+
+        }).fail(function(httpRequest, textErrorMsg, errorCodeObj){
+            console.log("not happening on loadCat.js", textErrorMsg, errorCodeObj);
         });
     };
-
+    return myfire
 })(Fireworks || {});
 Fireworks.loadCatsJson();

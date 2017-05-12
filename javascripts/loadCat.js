@@ -21,6 +21,6 @@ var Fireworks = (function(myfire){
             console.log("not happening on loadCat.js", textErrorMsg, errorCodeObj);
         });
     };
-    return myfire
+    return myfire;
 })(Fireworks || {});
 Fireworks.loadCatsJson();

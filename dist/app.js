@@ -27,10 +27,32 @@ var Fireworks = (function(myfire){
 Fireworks.loadCatsJson();
 
 },{}],2:[function(require,module,exports){
+"use strict";
+
+console.log("Do we have products?");
+
+var productPromise = new Promise ( (resolve, reject) =>{
+    $.getJSON("products.json", function(parsedProductData){
+        resolve(parsedProductData);
+    }).fail(function(arg1, arg2, arg3){
+        reject(new Error("Product Jason did not load", arg2, arg3));
+    });
+});
 
 },{}],3:[function(require,module,exports){
-arguments[4][2][0].apply(exports,arguments)
-},{"dup":2}],4:[function(require,module,exports){
+"use strict";
+
+console.log("Do we have types?");
+
+var typePromise = new Promise( (resolve, reject) => {
+    $.getJSON("types.json", function(parsedTypeData){
+        resolve(parsedTypeData);
+    }).fail(function(arg1, arg2, arg3){
+        reject(new Error("Types Jason did not load....Jason was a typo but I like it, so it stays", arg2, arg3));
+    });
+});
+
+},{}],4:[function(require,module,exports){
 "use strict";
 console.log("how we doing?");
 
@@ -46,4 +68,36 @@ $("#drop-down-change a").click((event) => {
 
 });
 
-},{}]},{},[1,2,3,4]);
+},{}],5:[function(require,module,exports){
+"use strict";
+console.log("is cat loading to the page?");
+
+
+var catPromise = new Promise( (resolve, reject) =>{
+    $.getJSON("categories.json", function(parsedCatData){
+        resolve(parsedCatData);
+    }).fail(function(arg1, arg2, arg3){
+        reject(new Error("did not load man", arg2, arg3));
+    });
+
+});
+
+//set a promise to load json data for categories and to return the parsed data to a result, then set a promise to return an error to reject
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+},{}]},{},[1,2,3,4,5]);

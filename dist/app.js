@@ -27,41 +27,52 @@
 //Fireworks.loadCatsJson();
 
 },{}],2:[function(require,module,exports){
-//"use strict";
-//
-//console.log("Do we have products?");
-//
-//let parsedProductData = [];
-//
-//let Products = () => {
-//    var productPromise = new Promise ( (resolve, reject) =>{
-//        $.getJSON("products.json", function(parsedProductData){
-//            resolve(parsedProductData);
-//        }).fail(function(arg1, arg2, arg3){
-//            reject(new Error("Product Jason did not load", arg2, arg3));
-//        });
-//    });
-//};
+"use strict";
 
-},{}],3:[function(require,module,exports){
-//"use strict";
-//
-//console.log("Do we have types?");
-//
-//let parsedTypeData = [];
-//
-//let Type = () => {
-//
-//    var typePromise = new Promise( (resolve, reject) => {
-//        $.getJSON("types.json", function(parsedTypeData){
-//            resolve(parsedTypeData);
-//        }).fail(function(arg1, arg2, arg3){
-//            reject(new Error("Types Jason did not load....Jason was a typo but I like it, so it stays", arg2, arg3));
-//        });
-//    });
-//};
+console.log("Do we have products?");
 
-},{}],4:[function(require,module,exports){
+let products = require('./loadType');
+
+
+let parsedProductData = [];
+
+let products = () => {
+    return new Promise ( (resolve, reject) =>{
+        $.getJSON("products.json", function(ProductData){
+            parsedProductData = ProductData;
+            resolve();
+        }).fail(function(arg1, arg2, arg3){
+            reject(new Error("Product Jason did not load", arg2, arg3));
+        });
+    });
+};
+
+module.exports = {products};
+
+},{"./loadType":3}],3:[function(require,module,exports){
+"use strict";
+
+console.log("Do we have types?");
+let types = require('./sampleProduct');
+
+let parsedTypeData = [];
+
+
+let types = () => {
+
+    return new Promise( (resolve, reject) => {
+        $.getJSON("types.json", function(TypeData){
+            parsedTypeData = TypeData;
+            resolve();
+        }).fail(function(arg1, arg2, arg3){
+            reject(new Error("Types Jason did not load....Jason was a typo but I like it, so it stays", arg2, arg3));
+        });
+    });
+};
+
+module.exports = {types};
+
+},{"./sampleProduct":5}],4:[function(require,module,exports){
 "use strict";
 console.log("how we doing?");
 
@@ -111,55 +122,49 @@ let products = () => {
 };
 
 
-categories().then(types, types.fail).then(products, products.fail).then();
-
-
-
-
-$("#drop-down-change a").click((event) => {
-//    console.log("what is clicked", event.target.innerText);
-    let whatCatClicked = event.target.innerText;
-    if (whatCatClicked === "Fireworks") {
-        console.log("You are an asshole who picked fireworks");
-    } else if (whatCatClicked === "Demolition") {
-        console.log("You are an asshole who click demolition");
-    }
-
+categories().then(types).then(products).then(function(){
+    console.log("data has successfully loaded", parsedProductData);
+    dropDownEvent();
+}).catch(function(error){
+    console.log(error);
 });
 
+
+
+function dropDownEvent () {
+    $("#drop-down-change a").click((event) => {
+    //    console.log("what is clicked", event.target.innerText);
+        let whatCatClicked = event.target.innerText;
+        if (whatCatClicked === "Fireworks") {
+            console.log("You are an asshole who picked fireworks");
+            console.log(parsedCatData);
+        } else if (whatCatClicked === "Demolition") {
+            console.log("You are an asshole who click demolition");
+        }
+
+    });
+}
+
 },{}],5:[function(require,module,exports){
-//"use strict";
-//console.log("is cat loading to the page?");
-//
-//let parsedCatData = [];
-//
-//let Categories = () => {
-//    var catPromise = new Promise( (resolve, reject) =>{
-//        $.getJSON("categories.json", function(CatData){
-//            parsedCatData = CatData
-//            resolve();
-//        }).fail(function(arg1, arg2, arg3){
-//            reject(new Error("did not load man", arg2, arg3));
-//        });
-//
-//    });
-//};
-////set a promise to load json data for categories and to return the parsed data to a result, then set a promise to return an error to reject
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+"use strict";
+console.log("is cat loading to the page?");
+
+let parsedCatData = [];
+
+
+let categories = function(){
+    return new Promise( (resolve, reject) =>{
+        $.getJSON("categories.json", function(CatData){
+            parsedCatData = CatData;
+            console.log(parsedCatData.categories);
+            resolve();
+        }).fail(function(arg1, arg2, arg3){
+            reject(new Error("did not load man", arg2, arg3));
+        });
+
+    });
+};
+
+module.exports = {categories};
 
 },{}]},{},[1,2,3,4,5]);

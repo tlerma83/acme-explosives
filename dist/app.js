@@ -6,7 +6,7 @@ let products = () => {
     return new Promise ( (resolve, reject) =>{
 
         $.getJSON("products.json", function(productData){
-            resolve(productData.products);
+            resolve(productData.products[0]);
 
         }).fail(function(arg1, arg2, arg3){
             reject(new Error("Product Jason did not load", arg2, arg3));
@@ -45,8 +45,9 @@ let requireProds = require('./loadProduct');
 
 let catDataArray;
 let typeDataArray;
-let prodDataArray;
+let prodDataObj;
 
+let outputDiv = $("#output");
 
 requireCats.categories().then (
     (catData) => {
@@ -60,10 +61,9 @@ requireCats.categories().then (
     }
 ).then(
     (prodData) => {
-        prodDataArray = prodData;
+        prodDataObj = prodData;
         console.log("data has successfully loaded");
         dropDownEvent();
-        //same as passing prodData at this point
     }
 ).catch(function(error){
     console.log(error);
@@ -79,39 +79,55 @@ function dropDownEvent (argumentDataVar) {
         let whatCatClicked = event.target.innerText;
         if (whatCatClicked === "Fireworks") {
             console.log("You are an asshole who picked fireworks");
-            categoryFunction(catDataArray[0]);
+            categoryFunction(0);
 
         } else if (whatCatClicked === "Demolition") {
             console.log("You are an asshole who click demolition");
-            categoryFunction(catDataArray[1]);
+            categoryFunction(1);
         }
 
     });
 }
 
 function categoryFunction (indexVal) {
-    console.log(indexVal, "this should be either fireworks or demolition");
-    if (indexVal.id === 0) {
-        console.log("Fireworks cat chosen now log typeDataArray", typeDataArray);
-        for (var objects1 in typeDataArray) {
-            let holdtypeObj = typeDataArray[objects1];
-            console.log(holdtypeObj);
-            if (holdtypeObj.category === 0) {
-                console.log("now how to link?");
+    var catgories = catDataArray[indexVal];
+
+//loop through typeDataArray which will bring back 6 objects. Within those objects are keyvalue pairs
+    for (let i = 0; i < typeDataArray.length; i++) {
+        //types holds my objects
+            let types = typeDataArray[i];
+
+
+// if category 0 then should match types.category...if not it will loop back through until it has a match
+        if (indexVal === types.category) {
+            console.log("looking for a match");
+
+
+//get product keys and set to a variable
+            for (var objects1 in prodDataObj) {
+                let products = prodDataObj[objects1];
+
+
+//hard part , if products.type(which is the type key in the products JSON) is equal to the types.id(which is the id key in types JSON) then we have a match
+                if (products.type === types.id) {
+                    console.log("You picked: " + " " + catgories.name + " " + types.name + " " + types.description + " " + products.name + " " + products.description);
+                    let productCards = `<div class="bootstrap-crap">
+                                        <h3>${catgories.name}</h3>
+                                        <h5>${products.name}</h5>
+                                        <p>${types.name} use</p>
+                                        <p>${types.description}</p>
+                                        <p>${products.description}</p>
+                                        </div>`;
+                    $("#output").append(productCards);
+                }
             }
         }
 
-    } else if (indexVal.id === 1) {
-        console.log("demo cat chosen now log typeDataArray");
-        for (var objects2 in typeDataArray) {
-            let holdtypeObj = typeDataArray[objects2];
-            console.log(holdtypeObj);
-            if (holdtypeObj.category === 1) {
-                console.log("now how to link? Also log out ids for types", typeDataArray[0].id);
-            }
-        }
     }
+
+
 }
+
 
 },{"./loadProduct":1,"./loadType":2,"./sampleProduct":4}],4:[function(require,module,exports){
 "use strict";

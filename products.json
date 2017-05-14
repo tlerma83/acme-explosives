@@ -76,7 +76,7 @@
             "id": 12,
             "type": 4,
             "name": "Blinding Sparklers",
-            "description": "They are there, you just can't see them."
+            "description": "Close your eyes and pretend they are there."
         },
         "sickof_sparklers": {
             "id": 13,
@@ -88,7 +88,7 @@
             "id": 14,
             "type": 4,
             "name": "Glitter Sparklers",
-            "description": "Yay glitter."
+            "description": "Yaaaas!!!!"
         },
         "silver_sparklers": {
             "id": 15,

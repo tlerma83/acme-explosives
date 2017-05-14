@@ -1,7 +1,16 @@
 "use strict";
 console.log("how we doing?");
 
-let products = require('./loadProduct');
+let requireCats = require('./sampleProduct');
+let requireTypes = require('./loadType');
+let requireProds = require('./loadProduct');
+
+let catDataArray;
+let typeDataArray;
+let prodDataArray;
+
+
+
 //let parsedCatData = [];
 //let parsedTypeData = [];
 //let parsedProductData = [];
@@ -47,22 +56,39 @@ let products = require('./loadProduct');
 //};
 
 
-categories().then(types).then(products).then(function(){
-    console.log("data has successfully loaded", parsedProductData);
-    dropDownEvent();
-}).catch(function(error){
+requireCats.categories().then (
+    (catData) => {
+       catDataArray = catData;
+        requireTypes.types();
+    }
+).then(
+    (typeData) => {
+        typeDataArray = typeData;
+        requireProds.products();
+    }
+).then(
+    (prodData) => {
+        prodDataArray = prodData;
+        console.log("data has successfully loaded");
+        dropDownEvent(prodDataArray);
+        //same as passing prodData at this point
+    }
+).catch(function(error){
     console.log(error);
 });
 
 
 
-function dropDownEvent () {
+
+function dropDownEvent (argumentDataVar) {
+    console.log("is there anything here yet?", argumentDataVar);
     $("#drop-down-change a").click((event) => {
+
+
     //    console.log("what is clicked", event.target.innerText);
         let whatCatClicked = event.target.innerText;
         if (whatCatClicked === "Fireworks") {
             console.log("You are an asshole who picked fireworks");
-            console.log(parsedCatData);
         } else if (whatCatClicked === "Demolition") {
             console.log("You are an asshole who click demolition");
         }
